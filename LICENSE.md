@@ -1,9 +1,7 @@
 __Copyright © 2025 Jace Sherwood__,
 
 > This work is Copyrighted under Attribution-NonCommercial-ShareAlike 4.0 International; and
-> with this work,
->
-> <ins>You are free to</ins>:
+> with this work, <ins>You are free to</ins>:
 > 1. **Share** — copy and redistribute the material in any medium or format
 > 2. **Adapt** — remix, transform, and build upon the material
 >
