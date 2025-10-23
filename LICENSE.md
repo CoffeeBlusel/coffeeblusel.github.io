@@ -1,7 +1,8 @@
 __Copyright © 2025 Jace Sherwood__,
 
-> This work is Copyrighted under Attribution-NonCommercial-ShareAlike 4.0 International; and
-> with this work, <ins>You are free to</ins>:
+> This work is Copyrighted under     CC BY-NC-SA 4.0;
+>
+> and with this work, <ins>You are free to</ins>:
 > 1. **Share** — copy and redistribute the material in any medium or format
 > 2. **Adapt** — remix, transform, and build upon the material
 >
@@ -11,8 +12,11 @@ __Copyright © 2025 Jace Sherwood__,
 > 3. **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license.
 >
 
+---
+> [!NOTE]
+> Legal information containing full legal rights, and non-rights; was acquired from [creativecommons.org](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) . To read more about the specific license you can continue reading into the legal code below or visit creativecommons.org .
 <details>
-   <summary>Creative Commons 4.0 license, Legal Code :</summary>
+   <summary>Creative Commons 4.0 license, Legal Code ;</summary>
    
    >
    >
@@ -130,3 +134,5 @@ __Copyright © 2025 Jace Sherwood__,
    4. Nothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.
 
 </details>
+
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
