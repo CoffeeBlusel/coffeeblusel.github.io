@@ -1,2 +1,3 @@
 # coffeeblusel.github.io
-Project linker, and site about myself. 
+
+Portfolio, social media linker, and project displayer
