@@ -33,5 +33,6 @@ fs.writeFileSync(
     JSON.stringify(drops_data, null, 2)
 );
 
+console.log("Drops JSON length:", JSON.stringify(drops_data).length);
 
 console.log("Scraping process completed! Data saved to warframe_drops.json");
