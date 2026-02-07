@@ -21,7 +21,7 @@ $("h3[id]").each((_, h3) => {
         if (el[0].tagName === "TABLE") {
             drops_data[category].push(parseTable($, el));
         }
-        
+
         el = el.next();
     }
 });
