@@ -14,7 +14,7 @@ let drops_data = {}; // Holds categories
 function parseTable($, table) {
     const rows = [];
     $(table)
-        .find('tr')
+        .find('tbody tr')
         .each((_, tr) => {
             const cells = $(tr)
                 .find('th, td')
