@@ -26,9 +26,12 @@ $("h3[id]").each((_, h3) => {
     }
 });
 
+fs.mkdirSync("./public", { recursive: true }); // ensure folder exists
+
 fs.writeFileSync(
-    "/public/warframe_drops.json",
+    "./public/warframe_drops.json",
     JSON.stringify(drops_data, null, 2)
 );
+
 
 console.log("Scraping process completed! Data saved to warframe_drops.json");
