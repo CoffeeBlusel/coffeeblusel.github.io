@@ -24,6 +24,10 @@ jobs:
       - name: Scrape Warframe Drops
         run: node node-scripts/scrape-drops.js
 
+      - name: List files
+        run: ls -R public
+
+
       - name: Commit JSON if changed
         run: |
           git config --global user.name "github-actions"
