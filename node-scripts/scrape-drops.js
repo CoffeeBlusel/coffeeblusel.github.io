@@ -9,22 +9,14 @@ const html = await res.text();
 
 const $ = cheerio.load(html);
 
-let drops_data = {}; // Holds categories
+let drops_data = {}; 
 
 function parseTable($, table) {
     const rows = [];
-    $(table)
-        .find('tbody tr')
-        .each((_, tr) => {
-            const cells = $(tr)
-                .find('th, td')
-                .map((_, cell) => $(cell).text().trim())
-                .get();
-
-            if (cells.length > 0) {
-                rows.push(cells);
-            }
-        });
+    $(table).find("tbody tr").each((_, tr) => {
+        const cells = $(tr).children("th, td").map((_, cell) => $(cell).text().trim()).get();
+        if (cells.length > 0) rows.push(cells);
+    });
     return rows;
 }
 
@@ -32,24 +24,16 @@ $("h3[id]").each((_, h3) => {
     const category = $(h3).attr("id");
     drops_data[category] = [];
 
-    let el = $(h3).next();
+    let el = $(h3).nextAll("table").first();
 
-    while (el.length && el[0].tagName !== "H3") {
-        if (el[0].tagName === "TABLE") {
-            drops_data[category].push(parseTable($, el));
-        }
-
-        el = el.next();
+    while (el.length && el[0].tagName === "table") {
+        drops_data[category].push(parseTable($, el));
+        el = el.nextAll("table").first();
     }
 });
 
-fs.mkdirSync("./public", { recursive: true }); // ensure folder exists
-
-fs.writeFileSync(
-    "./public/warframe_drops.json",
-    JSON.stringify(drops_data, null, 2)
-);
+fs.mkdirSync("./public", { recursive: true });
+fs.writeFileSync("./public/warframe_drops.json", JSON.stringify(drops_data, null, 2));
 
 console.log("Drops JSON length:", JSON.stringify(drops_data).length);
-
-console.log("Scraping process completed! Data saved to warframe_drops.json");
+console.log("Scraping process completed! Data saved to public/warframe_drops.json");
