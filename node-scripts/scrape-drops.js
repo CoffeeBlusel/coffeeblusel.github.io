@@ -11,6 +11,23 @@ const $ = cheerio.load(html);
 
 let drops_data = {}; // Holds categories
 
+function parseTable($, table) {
+    const rows = [];
+    $(table)
+        .find('tr')
+        .each((_, tr) => {
+            const cells = $(tr)
+                .find('th, td')
+                .map((_, cell) => $(cell).text().trim())
+                .get();
+
+            if (cells.length > 0) {
+                rows.push(cells);
+            }
+        });
+    return rows;
+}
+
 $("h3[id]").each((_, h3) => {
     const category = $(h3).attr("id");
     drops_data[category] = [];
