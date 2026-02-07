@@ -1,4 +1,4 @@
-import cheerio from 'cheerio';
+import * cheerio from 'cheerio';
 import fs from 'fs';
 
 const URL = "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/uploads/cms/hnfvc0o3jnfvc873njb03enrf56.html";
@@ -21,7 +21,7 @@ $("h3[id]").each((_, h3) => {
         if (el[0].tagName === "TABLE") {
             drops_data[category].push(parseTable($, el));
         }
-        
+
         el = el.next();
     }
 });
