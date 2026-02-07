@@ -31,9 +31,6 @@ jobs:
           git add public/warframe_drops.json
           git diff --cached --quiet || git commit -m "Update Warframe drops JSON"
 
-      - name: Pull latest changes
-        run: git pull --rebase origin master
-
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
