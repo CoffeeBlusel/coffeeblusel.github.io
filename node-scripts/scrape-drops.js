@@ -27,7 +27,7 @@ $("h3[id]").each((_, h3) => {
 });
 
 fs.writeFileSync(
-    "./public/warframe_drops.json",
+    "/public/warframe_drops.json",
     JSON.stringify(drops_data, null, 2)
 );
 
