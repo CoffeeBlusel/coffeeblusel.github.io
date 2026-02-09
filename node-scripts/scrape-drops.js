@@ -32,6 +32,35 @@ $("h3[id]").each((_, h3) => {
     }
 });
 
+function normalizeCategoryDynamic(rawTables, categoryName) {
+    const normalized = [];
+
+    for (const table of rawTables) {
+        let currentHeader = null;
+
+        for (const row of table) {
+            if (row.length === 1) {
+                currentHeader = row[0]; // treat single-cell rows as headers
+                continue;
+            }
+
+            // multi-cell row → keep all columns
+            normalized.push({
+                category: categoryName,
+                header: currentHeader,
+                cells: row
+            });
+        }
+    }
+
+    return normalized;
+}
+
+for (const category in drops_data) {
+    drops_data[category] = normalizeCategoryDynamic(drops_data[category], category);
+}
+
+
 fs.mkdirSync("./public", { recursive: true });
 fs.writeFileSync("./public/warframe_drops.json", JSON.stringify(drops_data, null, 2));
 

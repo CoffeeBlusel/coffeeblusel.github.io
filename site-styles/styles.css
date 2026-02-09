@@ -74,12 +74,6 @@ body {
     padding: 0;
 }
 
-main{
-    background-color: var(--clr-surface-a10);               /* Body Background Color */
-    margin: 2% 1% 2% 1%;
-    padding: 2%;
-}
-
 h1, h2, h3, h4, h5, h6 {
     color: var(--clr-primary-a50);                          /* Heading Color */
     margin-top: 0;
@@ -92,47 +86,4 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-.header {
-    display: flex;
-    gap: 5px;
-    align-items: baseline;
-    border-bottom: 2px solid var(--clr-surface-a20);
-    height: 35px;
-    margin-bottom: 2%;
-    padding: 10px 0 0 10px;
-}
-
-
-.header img, .header h1 {
-    margin-bottom: 0;
-}
-
-.policy-page-content {
-    background-color: var(--clr-surface-a20);
-    padding: 50px;
-    margin: 20px;
-    width: 550px;
-}
-
-.horiz-flex-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.outer-wrapper {
-    display: flex;
-    flex-direction: horizontal;
-}
-
-.page-content {
-    flex-grow: 1;
-}
-
-.sidebar {
-    width: 25%;
-    padding: 20px;
-    margin-left: 20px;
 }
