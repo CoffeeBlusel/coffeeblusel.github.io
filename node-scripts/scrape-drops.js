@@ -40,25 +40,23 @@ function normalizeCategoryDynamic(rawTables, categoryName) {
     const normalized = [];
 
     for (const table of rawTables) {
-        console.log(`Normalizing category: ${categoryName} with ${rawTables.length} tables`); // Logging
         let currentHeader = null;
+        let currentGroup = null;
 
         for (const row of table) {
             if (row.length === 1) {
-                currentHeader = row[0]; // treat single-cell rows as headers
+                // single-cell row = new header
+                currentHeader = row[0];
+                currentGroup = { header: currentHeader, rows: [] };
+                normalized.push(currentGroup);
                 continue;
             }
 
-            // multi-cell row → keep all columns
-            normalized.push({
-                category: categoryName,
-                header: currentHeader,
-                cells: row
-            });
+            // multi-cell row → add to current group
+            if (currentGroup) currentGroup.rows.push(row);
         }
     }
 
-    console.log(`Finished normalizing process!`); // Logging
     return normalized;
 }
 
