@@ -26,16 +26,21 @@ $("h3[id]").each((_, h3) => {
 
     let el = $(h3).nextAll("table").first();
 
+    console.log(`Producing raw data for category: ${category}`); // Logging
+
     while (el.length && el[0].tagName === "table") {
         drops_data[category].push(parseTable($, el));
         el = el.nextAll("table").first();
     }
+
+    console.log(`Finished producing raw data!`); // Logging
 });
 
 function normalizeCategoryDynamic(rawTables, categoryName) {
     const normalized = [];
 
     for (const table of rawTables) {
+        console.log(`Normalizing category: ${categoryName} with ${rawTables.length} tables`); // Logging
         let currentHeader = null;
 
         for (const row of table) {
@@ -53,6 +58,7 @@ function normalizeCategoryDynamic(rawTables, categoryName) {
         }
     }
 
+    console.log(`Finished normalizing process!`); // Logging
     return normalized;
 }
 
