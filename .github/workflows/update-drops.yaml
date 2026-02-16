@@ -31,16 +31,25 @@ jobs:
         env:
           GPG_PRIVATE_KEY: ${{ secrets.ACTIONS_KEY }}
         run: |
-          printf "%b" "$GPG_PRIVATE_KEY" | gpg --batch --import
+          # Make sure GPG uses its own home in the CI runner
+          export GNUPGHOME=$(mktemp -d)
+          chmod 700 "$GNUPGHOME"
       
-          # Get the key ID
+          # Rebuild the key with real newlines and import
+          echo "$GPG_PRIVATE_KEY" | sed 's/\\n/\n/g' | gpg --batch --import
+      
+          # Verify the key is imported
+          gpg --list-secret-keys --keyid-format LONG
+      
+          # Get the key ID (LONG format)
           KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
-
-          # Configure git
+      
+          # Configure git to use it
           git config --global user.name "Actions Signature"
           git config --global user.email "ci@cb.dev"
-          git config --global user.signingkey $KEY_ID
+          git config --global user.signingkey "$KEY_ID"
           git config --global commit.gpgsign true
+
 
       - name: Commit JSON if changed
         run: |
