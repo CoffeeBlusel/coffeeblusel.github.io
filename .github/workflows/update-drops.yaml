@@ -30,8 +30,8 @@ jobs:
 
       - name: Commit JSON if changed
         run: |
-          git config user.name "github-actions[bot]"                                      ## Set the Git user name for the commit
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"   ## Set the Git user email for the commit
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/warframe_drops.json
           git diff --cached --quiet || git commit -m "Update Warframe drops JSON"
 
