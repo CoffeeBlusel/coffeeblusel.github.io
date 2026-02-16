@@ -28,10 +28,10 @@ jobs:
         run: ls -R public
 
       - name: Import GPG key and configure git
-        run: |
         env:
           GPG_PRIVATE_KEY: ${{ secrets.ACTIONS_KEY }}
         run: |
+        
           # Import the key safely
           echo "$GPG_PRIVATE_KEY" | tr -d '\r' | gpg --batch --import
       
