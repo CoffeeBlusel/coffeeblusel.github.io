@@ -30,7 +30,7 @@ jobs:
       - name: Import GPG key and configure git
         run: |
           # Write the secret to a temporary file
-          echo "${{ secrets.ACTIONS_KEY }}" > private.key
+          printf "%b" "${{ secrets.ACTIONS_KEY }}" | gpg --batch --import
 
           # Import the key
           gpg --batch --import private.key
