@@ -27,11 +27,18 @@ jobs:
       - name: List files
         run: ls -R public
 
+      # For Signature
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.Actions Signature }}" | gpg --batch --import
+          KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
+          git config --global user.name "Actions Signature"
+          git config --global user.email "ci@cb.dev"
+          git config --global user.signingkey $KEY_ID
+          git config --global commit.gpgsign true
 
       - name: Commit JSON if changed
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/warframe_drops.json
           git diff --cached --quiet || git commit -m "Update Warframe drops JSON"
 
