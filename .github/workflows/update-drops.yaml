@@ -27,14 +27,10 @@ jobs:
       - name: List files
         run: ls -R public
 
-      - name: Import GPG key
+      - name: Import GPG key and configure git
         run: |
-          # Write the secret to a file
+          # Write the secret to a temporary file
           echo "${{ secrets.ACTIONS_KEY }}" > private.key
-
-          # Make sure GPG home exists
-          mkdir -p ~/.gnupg
-          chmod 700 ~/.gnupg
 
           # Import the key
           gpg --batch --import private.key
@@ -42,15 +38,11 @@ jobs:
           # Get the key ID
           KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
 
-          # Configure Git to use this key
+          # Configure git to use it
           git config --global user.name "Actions Signature"
           git config --global user.email "ci@cb.dev"
           git config --global user.signingkey $KEY_ID
           git config --global commit.gpgsign true
-
-          # Remove the key file
-          rm private.key
-
 
       - name: Commit JSON if changed
         run: |
