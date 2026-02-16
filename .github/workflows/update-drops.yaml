@@ -36,8 +36,4 @@ jobs:
           git diff --cached --quiet || git commit -m "Update Warframe drops JSON"
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: site
-          force: true
+        run: git push origin site
