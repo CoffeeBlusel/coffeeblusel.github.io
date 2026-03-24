@@ -3,6 +3,8 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
 
+/*- USE REM for Consistency -*/
+
 /*
  * Variables
  */
@@ -60,18 +62,14 @@
  * Global Styles
  */
 
-html {
+html, body {
     font-family: "Parkinsans", sans-serif;
     font-optical-sizing: auto;
+    background: var(--clr-surface-a0);                      /* Background Color */
     color: var(--clr-light-a0);                             /* Text Color */
     margin: 0;
     padding: 0;
-}
-
-body {
-    background: var(--clr-surface-a0);                      /* Background Color */
-    margin: 0;
-    padding: 0;
+    height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -86,4 +84,16 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+nav.nav-wrapper {
+    position: relative;
+    background: var(--clr-surface-tonal-a0);              /* Navbar Background */
+    display: flex;
+    float: left;
+    width: 15rem;
+    height: 100dvh;
+    box-sizing: border-box;
+    z-index: 1000;
+    padding: 1rem;
 }
