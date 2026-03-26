@@ -62,6 +62,7 @@ function normalizeCategoryDynamic(rawTables, categoryName) {
             if (currentGroup) currentGroup.rows.push(row);
         }
     }
+}
 
 function normalizeCategoryDynamic(rawTables, categoryName) {
     return normalized;
