@@ -2,7 +2,7 @@ name: Update Warframe Drops
 
 on:
   schedule:
-    - cron: '0 0 * * 0'  # every Sunday at midnight UTC
+    - cron: '0 0 * * 0' # every Sunday at midnight UTC
   workflow_dispatch:     # allows manual runs
 
 permissions:
@@ -27,7 +27,17 @@ jobs:
       - name: List files
         run: ls -R public
 
+  verify-generated-json:
+    runs-on: ubuntu-latest
+    needs: update-drops
+    steps:
+      - name: Verify JSON
+        run: node node-scripts/verify-json.js
 
+  commit-and-push:
+    runs-on: ubuntu-latest
+    needs: [update-drops, verify-generated-json]
+    steps:
       - name: Commit JSON if changed
         run: |
           git config user.name "github-actions[bot]"                                      ## Set the Git user name for the commit

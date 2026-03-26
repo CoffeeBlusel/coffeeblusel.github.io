@@ -10,5 +10,7 @@ $(document).ready(function() {
         console.log("Categories loaded from JSON file:", categories);
         console.log("Values loaded from JSON file:", values);
         console.log("Items loaded from JSON file:", items);
+    }).fail(function(jqxhr, textStatus, error) {
+        console.error("Failed to load JSON:", textStatus, error);
     });
 });
