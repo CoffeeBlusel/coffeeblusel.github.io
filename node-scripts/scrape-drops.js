@@ -21,7 +21,10 @@ function parseTable($, table) {
             .map((_, cell) => $(cell).text().trim())
             .get();
 
-        if (cells.length > 0) rows.push(cells);
+        // Skip empty rows
+        if (cells.length === 0 || cells.every(cell => cell === "")) return;
+
+        rows.push(cells);
     });
 
     return rows;
@@ -36,10 +39,13 @@ $("h3[id]").each((_, h3) => {
 
     let el = $(h3).next();
 
-    // Only grab tables UNTIL next h3
     while (el.length && el[0].tagName !== "h3") {
         if (el[0].tagName === "table") {
-            drops_data[category].push(parseTable($, el));
+            const parsed = parseTable($, el);
+            // Skip empty tables
+            if (parsed.length > 0) {
+                drops_data[category].push(parsed);
+            }
         }
         el = el.next();
     }
@@ -47,7 +53,7 @@ $("h3[id]").each((_, h3) => {
     console.log(`Finished producing raw data for category: ${category}`);
 });
 
-function normalizeCategoryDynamic(rawTables, categoryName) {
+function normalizeCategoryDynamic(rawTables) {
     const normalized = [];
 
     for (const table of rawTables) {
@@ -62,7 +68,10 @@ function normalizeCategoryDynamic(rawTables, categoryName) {
             }
 
             if (currentGroup) {
-                currentGroup.rows.push(row);
+                // Only include non-empty rows
+                if (row.some(cell => cell !== "")) {
+                    currentGroup.rows.push(row);
+                }
             }
         }
     }
@@ -72,7 +81,7 @@ function normalizeCategoryDynamic(rawTables, categoryName) {
 
 // Normalize all categories
 for (const category in drops_data) {
-    drops_data[category] = normalizeCategoryDynamic(drops_data[category], category);
+    drops_data[category] = normalizeCategoryDynamic(drops_data[category]);
 }
 
 // Ensure output folder exists
